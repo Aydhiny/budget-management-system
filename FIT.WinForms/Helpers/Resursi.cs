@@ -6,7 +6,7 @@ namespace FIT.WinForms.Helpers
     public class Resursi
     {
         static ResourceManager Manager =
-               new ResourceManager("FIT.WinForms.Resource1", Assembly.GetExecutingAssembly());
+               new ResourceManager("BUDGET.WinForms.Resource1", Assembly.GetExecutingAssembly());
 
         public static string Get(string name)
         {

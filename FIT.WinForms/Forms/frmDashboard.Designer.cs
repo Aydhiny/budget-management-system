@@ -28,25 +28,81 @@
         /// </summary>
         private void InitializeComponent()
         {
-            dataGridView1 = new DataGridView();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDashboard));
+            dgvBudget = new DataGridView();
+            CategoryName = new DataGridViewTextBoxColumn();
+            Amount = new DataGridViewTextBoxColumn();
+            Description = new DataGridViewTextBoxColumn();
+            Date = new DataGridViewTextBoxColumn();
+            Delete = new DataGridViewButtonColumn();
             label1 = new Label();
             label2 = new Label();
             btnExpense = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            btnCategory = new Button();
+            lblWarning = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgvBudget).BeginInit();
             SuspendLayout();
             // 
-            // dataGridView1
+            // dgvBudget
             // 
-            dataGridView1.AllowUserToAddRows = false;
-            dataGridView1.AllowUserToDeleteRows = false;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 82);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.ReadOnly = true;
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(852, 374);
-            dataGridView1.TabIndex = 0;
+            dgvBudget.AllowUserToAddRows = false;
+            dgvBudget.AllowUserToDeleteRows = false;
+            dgvBudget.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvBudget.Columns.AddRange(new DataGridViewColumn[] { CategoryName, Amount, Description, Date, Delete });
+            dgvBudget.Location = new Point(12, 82);
+            dgvBudget.Name = "dgvBudget";
+            dgvBudget.ReadOnly = true;
+            dgvBudget.RowHeadersWidth = 51;
+            dgvBudget.RowTemplate.Height = 29;
+            dgvBudget.Size = new Size(852, 374);
+            dgvBudget.TabIndex = 0;
+            dgvBudget.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // CategoryName
+            // 
+            CategoryName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            CategoryName.DataPropertyName = "CategoryName";
+            CategoryName.HeaderText = "Category";
+            CategoryName.MinimumWidth = 6;
+            CategoryName.Name = "CategoryName";
+            CategoryName.ReadOnly = true;
+            // 
+            // Amount
+            // 
+            Amount.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Amount.DataPropertyName = "Amount";
+            Amount.HeaderText = "Amount";
+            Amount.MinimumWidth = 6;
+            Amount.Name = "Amount";
+            Amount.ReadOnly = true;
+            // 
+            // Description
+            // 
+            Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Description.DataPropertyName = "Description";
+            Description.HeaderText = "Description";
+            Description.MinimumWidth = 6;
+            Description.Name = "Description";
+            Description.ReadOnly = true;
+            // 
+            // Date
+            // 
+            Date.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Date.DataPropertyName = "Date";
+            Date.HeaderText = "Date";
+            Date.MinimumWidth = 6;
+            Date.Name = "Date";
+            Date.ReadOnly = true;
+            // 
+            // Delete
+            // 
+            Delete.HeaderText = "";
+            Delete.MinimumWidth = 6;
+            Delete.Name = "Delete";
+            Delete.ReadOnly = true;
+            Delete.Text = "Delete";
+            Delete.UseColumnTextForButtonValue = true;
+            Delete.Width = 125;
             // 
             // label1
             // 
@@ -70,34 +126,67 @@
             // 
             // btnExpense
             // 
-            btnExpense.Location = new Point(723, 41);
+            btnExpense.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnExpense.ForeColor = Color.FromArgb(56, 124, 188);
+            btnExpense.Location = new Point(574, 31);
             btnExpense.Name = "btnExpense";
-            btnExpense.Size = new Size(141, 29);
+            btnExpense.Size = new Size(141, 39);
             btnExpense.TabIndex = 3;
             btnExpense.Text = "Add expense";
             btnExpense.UseVisualStyleBackColor = true;
+            // 
+            // btnCategory
+            // 
+            btnCategory.BackColor = Color.FromArgb(56, 124, 188);
+            btnCategory.ForeColor = SystemColors.ButtonFace;
+            btnCategory.Location = new Point(721, 31);
+            btnCategory.Name = "btnCategory";
+            btnCategory.Size = new Size(143, 39);
+            btnCategory.TabIndex = 4;
+            btnCategory.Text = "Add category";
+            btnCategory.UseVisualStyleBackColor = false;
+            // 
+            // lblWarning
+            // 
+            lblWarning.AutoSize = true;
+            lblWarning.ForeColor = Color.Red;
+            lblWarning.Location = new Point(12, 469);
+            lblWarning.Name = "lblWarning";
+            lblWarning.Size = new Size(0, 20);
+            lblWarning.TabIndex = 5;
             // 
             // frmDashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(876, 550);
+            ClientSize = new Size(881, 558);
+            Controls.Add(lblWarning);
+            Controls.Add(btnCategory);
             Controls.Add(btnExpense);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(dataGridView1);
+            Controls.Add(dgvBudget);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmDashboard";
             Text = "Budget Dashboard";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            Load += frmDashboard_Load;
+            ((System.ComponentModel.ISupportInitialize)dgvBudget).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private DataGridView dataGridView1;
+        private DataGridView dgvBudget;
         private Label label1;
         private Label label2;
         private Button btnExpense;
+        private Button btnCategory;
+        private Label lblWarning;
+        private DataGridViewTextBoxColumn CategoryName;
+        private DataGridViewTextBoxColumn Amount;
+        private DataGridViewTextBoxColumn Description;
+        private DataGridViewTextBoxColumn Date;
+        private DataGridViewButtonColumn Delete;
     }
 }

@@ -36,6 +36,7 @@
             txtUsername = new TextBox();
             label2 = new Label();
             groupBox1 = new GroupBox();
+            label7 = new Label();
             button1 = new Button();
             btnLogin = new Button();
             label4 = new Label();
@@ -112,6 +113,8 @@
             // 
             // groupBox1
             // 
+            groupBox1.AutoSize = true;
+            groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(button1);
             groupBox1.Controls.Add(btnLogin);
             groupBox1.Controls.Add(label4);
@@ -123,10 +126,22 @@
             groupBox1.Margin = new Padding(3, 4, 3, 4);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(3, 4, 3, 4);
-            groupBox1.Size = new Size(536, 380);
+            groupBox1.Size = new Size(536, 386);
             groupBox1.TabIndex = 5;
             groupBox1.TabStop = false;
             groupBox1.Text = "Budget : v1";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.BackColor = Color.Transparent;
+            label7.Font = new Font("Segoe UI", 9F, FontStyle.Underline);
+            label7.ForeColor = Color.FromArgb(56, 124, 188);
+            label7.Location = new Point(7, 230);
+            label7.Name = "label7";
+            label7.Size = new Size(132, 20);
+            label7.TabIndex = 13;
+            label7.Text = "Niste registrovani?";
             // 
             // button1
             // 
@@ -261,5 +276,6 @@
         private Label label6;
         private Button button1;
         private ErrorProvider err;
+        private Label label7;
     }
 }

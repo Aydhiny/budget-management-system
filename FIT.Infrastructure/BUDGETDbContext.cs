@@ -22,6 +22,8 @@ namespace FIT.Infrastructure
         }
     
         public DbSet<User> Users { get; set; }
+        public DbSet<BudgetCategory> BudgetCategories { get; set; }
+        public DbSet<Expense> Expenses { get; set; }
 
     }
 }

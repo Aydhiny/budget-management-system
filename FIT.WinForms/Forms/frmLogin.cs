@@ -19,16 +19,29 @@ namespace BUDGET.WinForms.Forms
         public frmLogin()
         {
             InitializeComponent();
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if (ValidirajKontrolu(txtUsername, txtPassword))
             {
-                var podaci = db.Users.ToList();
-                var frm = new frmDashboard(podaci.First);
+                var korisnik = db.Users.FirstOrDefault(u => u.Username == txtUsername.Text && u.Password == txtPassword.Text);
 
+                // Ako je korisnik pronađen
+                if (korisnik != null)
+                {
+                    // Dohvati ID korisnika
+                    this.Hide();
+                    int userId = korisnik.UserId;
+                    var frm = new frmDashboard(userId);
+                    frm.Show();
+                }
             }
+            else
+                MessageBox.Show("Netacno uneseni podaci!", "Niste pravilno unijeli podatke!",
+                    MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
         }
 
         private bool ValidirajKontrolu(TextBox txt1, TextBox txt2)

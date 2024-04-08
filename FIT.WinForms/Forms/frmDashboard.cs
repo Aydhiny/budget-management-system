@@ -1,5 +1,7 @@
 ﻿using BUDGET.Data;
 using FIT.Infrastructure;
+using MindFusion.Charting.WinForms;
+using MindFusion.Charting;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,6 +27,46 @@ namespace BUDGET.WinForms.Forms
             MaximizeBox = false;
             dgvBudget.AutoGenerateColumns = false;
             UcitajTabelu();
+            LoadChart();
+        }
+
+        private void LoadChart()
+        {
+            var user = db.Users.FirstOrDefault(x => x.UserId == userId);
+            if (user != null)
+            {
+                var expensesByCategory = db.Expenses
+                    .Where(x => x.UserId == user.UserId)
+                    .GroupBy(x => x.CategoryId)
+                    .Select(g => new
+                    {
+                        CategoryId = g.Key,
+                        TotalAmount = g.Sum(x => x.Amount)
+                    })
+                    .ToList();
+
+                var chart = new BarChart3D();
+                chart.Dock = DockStyle.Fill;
+
+                foreach (var expense in expensesByCategory)
+                {
+                    var category = db.BudgetCategories.FirstOrDefault(x => x.CategoryId == expense.CategoryId);
+                    if (category != null)
+                    {
+                        double totalAmount = Convert.ToDouble(expense.TotalAmount);
+                        chart.Series.Add(new MindFusion.Charting.Series3D(new double[] { totalAmount }, new double[] { 0 }, new double[] { 0 }, new string[] { category.CategoryName }));
+                    }
+                }
+
+                chart.XAxis.Title = "Categories";
+                chart.YAxis.Title = "Total Expense Amount ($)";
+                chart.ShowLegend = true;
+                chart.LegendTitle = "Categories";
+
+                // Add the chart to the barChart3d1 control
+                barChart3d1.Controls.Clear();
+                barChart3d1.Controls.Add(chart);
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -74,6 +116,15 @@ namespace BUDGET.WinForms.Forms
             {
                 lblWarning.Text = "UPOZORENJE, Expenses nisu dodani!";
             }
+        }
+
+        private void btnCategory_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExpense_Click(object sender, EventArgs e)
+        {
         }
     }
 }

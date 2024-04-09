@@ -30,6 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDashboard));
             dgvBudget = new DataGridView();
+            ExpenseId = new DataGridViewTextBoxColumn();
+            CategoryName = new DataGridViewTextBoxColumn();
+            Amount = new DataGridViewTextBoxColumn();
+            Description = new DataGridViewTextBoxColumn();
+            Date = new DataGridViewTextBoxColumn();
+            Delete = new DataGridViewButtonColumn();
             label1 = new Label();
             label2 = new Label();
             btnExpense = new Button();
@@ -49,18 +55,20 @@
             txtPassword = new TextBox();
             label6 = new Label();
             label5 = new Label();
-            ExpenseId = new DataGridViewTextBoxColumn();
-            CategoryName = new DataGridViewTextBoxColumn();
-            Amount = new DataGridViewTextBoxColumn();
-            Description = new DataGridViewTextBoxColumn();
-            Date = new DataGridViewTextBoxColumn();
-            Delete = new DataGridViewButtonColumn();
+            label8 = new Label();
+            lblTotal = new Label();
+            groupBox1 = new GroupBox();
+            label10 = new Label();
+            lblCategories = new Label();
+            lblUsers = new Label();
+            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvBudget).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
             tabPage2.SuspendLayout();
             tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // dgvBudget
@@ -78,6 +86,62 @@
             dgvBudget.Size = new Size(852, 374);
             dgvBudget.TabIndex = 0;
             dgvBudget.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // ExpenseId
+            // 
+            ExpenseId.DataPropertyName = "ExpenseId";
+            ExpenseId.HeaderText = "ExpenseId";
+            ExpenseId.MinimumWidth = 6;
+            ExpenseId.Name = "ExpenseId";
+            ExpenseId.ReadOnly = true;
+            ExpenseId.Visible = false;
+            ExpenseId.Width = 125;
+            // 
+            // CategoryName
+            // 
+            CategoryName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            CategoryName.DataPropertyName = "CategoryName";
+            CategoryName.HeaderText = "Category";
+            CategoryName.MinimumWidth = 6;
+            CategoryName.Name = "CategoryName";
+            CategoryName.ReadOnly = true;
+            // 
+            // Amount
+            // 
+            Amount.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Amount.DataPropertyName = "Amount";
+            Amount.HeaderText = "Amount";
+            Amount.MinimumWidth = 6;
+            Amount.Name = "Amount";
+            Amount.ReadOnly = true;
+            // 
+            // Description
+            // 
+            Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Description.DataPropertyName = "Description";
+            Description.HeaderText = "Description";
+            Description.MinimumWidth = 6;
+            Description.Name = "Description";
+            Description.ReadOnly = true;
+            // 
+            // Date
+            // 
+            Date.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Date.DataPropertyName = "Date";
+            Date.HeaderText = "Date";
+            Date.MinimumWidth = 6;
+            Date.Name = "Date";
+            Date.ReadOnly = true;
+            // 
+            // Delete
+            // 
+            Delete.HeaderText = "";
+            Delete.MinimumWidth = 6;
+            Delete.Name = "Delete";
+            Delete.ReadOnly = true;
+            Delete.Text = "Delete";
+            Delete.UseColumnTextForButtonValue = true;
+            Delete.Width = 125;
             // 
             // label1
             // 
@@ -296,68 +360,89 @@
             label5.TabIndex = 0;
             label5.Text = "Change password:";
             // 
-            // ExpenseId
+            // label8
             // 
-            ExpenseId.DataPropertyName = "ExpenseId";
-            ExpenseId.HeaderText = "ExpenseId";
-            ExpenseId.MinimumWidth = 6;
-            ExpenseId.Name = "ExpenseId";
-            ExpenseId.ReadOnly = true;
-            ExpenseId.Visible = false;
-            ExpenseId.Width = 125;
+            label8.AutoSize = true;
+            label8.Location = new Point(6, 34);
+            label8.Name = "label8";
+            label8.Size = new Size(148, 20);
+            label8.TabIndex = 8;
+            label8.Text = "Money spent in total:";
             // 
-            // CategoryName
+            // lblTotal
             // 
-            CategoryName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            CategoryName.DataPropertyName = "CategoryName";
-            CategoryName.HeaderText = "Category";
-            CategoryName.MinimumWidth = 6;
-            CategoryName.Name = "CategoryName";
-            CategoryName.ReadOnly = true;
+            lblTotal.AutoSize = true;
+            lblTotal.BackColor = Color.Transparent;
+            lblTotal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblTotal.ForeColor = Color.Red;
+            lblTotal.Location = new Point(6, 59);
+            lblTotal.Name = "lblTotal";
+            lblTotal.Size = new Size(0, 20);
+            lblTotal.TabIndex = 9;
             // 
-            // Amount
+            // groupBox1
             // 
-            Amount.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Amount.DataPropertyName = "Amount";
-            Amount.HeaderText = "Amount";
-            Amount.MinimumWidth = 6;
-            Amount.Name = "Amount";
-            Amount.ReadOnly = true;
+            groupBox1.BackColor = SystemColors.Menu;
+            groupBox1.Controls.Add(label11);
+            groupBox1.Controls.Add(lblUsers);
+            groupBox1.Controls.Add(label10);
+            groupBox1.Controls.Add(lblCategories);
+            groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(lblTotal);
+            groupBox1.Location = new Point(894, 38);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(182, 462);
+            groupBox1.TabIndex = 10;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Tracker";
             // 
-            // Description
+            // label10
             // 
-            Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Description.DataPropertyName = "Description";
-            Description.HeaderText = "Description";
-            Description.MinimumWidth = 6;
-            Description.Name = "Description";
-            Description.ReadOnly = true;
+            label10.AutoSize = true;
+            label10.Location = new Point(6, 102);
+            label10.Name = "label10";
+            label10.Size = new Size(157, 20);
+            label10.TabIndex = 8;
+            label10.Text = "Number of categories:";
             // 
-            // Date
+            // lblCategories
             // 
-            Date.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Date.DataPropertyName = "Date";
-            Date.HeaderText = "Date";
-            Date.MinimumWidth = 6;
-            Date.Name = "Date";
-            Date.ReadOnly = true;
+            lblCategories.AutoSize = true;
+            lblCategories.BackColor = Color.Transparent;
+            lblCategories.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblCategories.ForeColor = Color.Blue;
+            lblCategories.Location = new Point(6, 127);
+            lblCategories.Name = "lblCategories";
+            lblCategories.Size = new Size(0, 20);
+            lblCategories.TabIndex = 9;
             // 
-            // Delete
+            // lblUsers
             // 
-            Delete.HeaderText = "";
-            Delete.MinimumWidth = 6;
-            Delete.Name = "Delete";
-            Delete.ReadOnly = true;
-            Delete.Text = "Delete";
-            Delete.UseColumnTextForButtonValue = true;
-            Delete.Width = 125;
+            lblUsers.AutoSize = true;
+            lblUsers.BackColor = Color.Transparent;
+            lblUsers.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblUsers.ForeColor = Color.Green;
+            lblUsers.Location = new Point(6, 217);
+            lblUsers.Name = "lblUsers";
+            lblUsers.Size = new Size(0, 20);
+            lblUsers.TabIndex = 9;
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(6, 164);
+            label11.Name = "label11";
+            label11.Size = new Size(150, 40);
+            label11.TabIndex = 8;
+            label11.Text = "Number of database \r\nusers:";
             // 
             // frmDashboard
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlLightLight;
-            ClientSize = new Size(903, 543);
+            ClientSize = new Size(1084, 543);
+            Controls.Add(groupBox1);
             Controls.Add(tabControl1);
             Controls.Add(label3);
             Controls.Add(lblWarning);
@@ -374,6 +459,8 @@
             tabPage3.ResumeLayout(false);
             tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            groupBox1.ResumeLayout(false);
+            groupBox1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -406,5 +493,12 @@
         private DataGridViewTextBoxColumn Description;
         private DataGridViewTextBoxColumn Date;
         private DataGridViewButtonColumn Delete;
+        private Label label8;
+        private Label lblTotal;
+        private GroupBox groupBox1;
+        private Label label10;
+        private Label lblCategories;
+        private Label label11;
+        private Label lblUsers;
     }
 }

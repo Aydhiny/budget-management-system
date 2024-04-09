@@ -27,7 +27,15 @@ namespace BUDGET.WinForms.Forms
             MaximizeBox = false;
             dgvBudget.AutoGenerateColumns = false;
             UcitajTabelu();
+            LoadLabels();
             LoadChart();
+        }
+
+        private void LoadLabels()
+        {
+            lblTotal.Text = db.Expenses.Sum(x => x.Amount).ToString();
+            lblCategories.Text = db.BudgetCategories.Count().ToString();
+            lblUsers.Text = db.Users.Count().ToString();
         }
 
         private void LoadChart()
@@ -85,6 +93,8 @@ namespace BUDGET.WinForms.Forms
                             db.Expenses.Remove(deletedExpense);
                             db.SaveChanges();
                             UcitajTabelu();
+                            LoadChart();
+                            LoadLabels();
                         }
                         else
                         {
@@ -109,6 +119,8 @@ namespace BUDGET.WinForms.Forms
         private void frmDashboard_Load(object sender, EventArgs e)
         {
             UcitajTabelu();
+            LoadChart();
+            LoadLabels();
         }
 
         private void UcitajTabelu()
@@ -128,12 +140,12 @@ namespace BUDGET.WinForms.Forms
                 foreach (var ex in expense)
                 {
                     var Red = tabela.NewRow();
-                    var category = db.BudgetCategories.Where(x => x.CategoryId == ex.CategoryId).First();
+                    var category = db.BudgetCategories.Where(x => x.CategoryId == ex.CategoryId).ToList();
                     Red["ExpenseId"] = ex.ExpenseId;
                     Red["Date"] = ex.Date;
                     Red["Amount"] = ex.Amount + " $";
                     Red["Description"] = ex.Description;
-                    Red["CategoryName"] = category.ToString();
+                    Red["CategoryName"] = category.FirstOrDefault()?.CategoryName;
                     tabela.Rows.Add(Red);
                 }
             }
@@ -156,16 +168,24 @@ namespace BUDGET.WinForms.Forms
         {
             var frm = new frmCategory();
             frm.ShowDialog();
-            if (frm.DialogResult == DialogResult.OK)
+            if (frm.DialogResult == DialogResult.OK) 
+            {
+                LoadChart();
+                LoadLabels();
                 UcitajTabelu();
+            }
         }
 
         private void btnExpense_Click(object sender, EventArgs e)
         {
-            var frm = new frmExpense();
+            var frm = new frmExpense(userId);
             frm.ShowDialog();
-            if (frm.DialogResult == DialogResult.OK)
+            if (frm.DialogResult == DialogResult.OK) 
+            {
                 UcitajTabelu();
+                LoadChart();
+                LoadLabels();
+            }
         }
     }
 }

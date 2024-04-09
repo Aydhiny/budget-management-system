@@ -37,7 +37,7 @@
             label2 = new Label();
             groupBox1 = new GroupBox();
             label7 = new Label();
-            button1 = new Button();
+            btnForgot = new Button();
             btnLogin = new Button();
             label4 = new Label();
             txtPassword = new TextBox();
@@ -115,7 +115,7 @@
             // 
             groupBox1.AutoSize = true;
             groupBox1.Controls.Add(label7);
-            groupBox1.Controls.Add(button1);
+            groupBox1.Controls.Add(btnForgot);
             groupBox1.Controls.Add(btnLogin);
             groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(txtPassword);
@@ -134,7 +134,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.BackColor = Color.Transparent;
+            label7.BackColor = Color.White;
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Underline);
             label7.ForeColor = Color.FromArgb(56, 124, 188);
             label7.Location = new Point(7, 230);
@@ -144,19 +144,19 @@
             label7.Text = "Niste registrovani?";
             label7.Click += label7_Click;
             // 
-            // button1
+            // btnForgot
             // 
-            button1.BackColor = Color.White;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            button1.ForeColor = Color.FromArgb(56, 124, 188);
-            button1.Location = new Point(175, 309);
-            button1.Margin = new Padding(3, 4, 3, 4);
-            button1.Name = "button1";
-            button1.Size = new Size(153, 49);
-            button1.TabIndex = 12;
-            button1.Text = "Forgot password ?";
-            button1.UseVisualStyleBackColor = false;
+            btnForgot.BackColor = Color.White;
+            btnForgot.FlatStyle = FlatStyle.Flat;
+            btnForgot.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnForgot.ForeColor = Color.FromArgb(56, 124, 188);
+            btnForgot.Location = new Point(175, 309);
+            btnForgot.Margin = new Padding(3, 4, 3, 4);
+            btnForgot.Name = "btnForgot";
+            btnForgot.Size = new Size(153, 49);
+            btnForgot.TabIndex = 12;
+            btnForgot.Text = "Forgot password ?";
+            btnForgot.UseVisualStyleBackColor = false;
             // 
             // btnLogin
             // 
@@ -275,7 +275,7 @@
         private Label label3;
         private Label label5;
         private Label label6;
-        private Button button1;
+        private Button btnForgot;
         private ErrorProvider err;
         private Label label7;
     }

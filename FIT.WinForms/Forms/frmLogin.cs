@@ -49,10 +49,10 @@ namespace BUDGET.WinForms.Forms
             return Validator.ProvjeriUnos(txt1, err, Kljucevi.ReqiredValue)
                 && Validator.ProvjeriUnos(txt2, err, Kljucevi.ReqiredValue);
         }
-
         private void label7_Click(object sender, EventArgs e)
         {
-
+            var frm = new frmRegister();
+            frm.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)

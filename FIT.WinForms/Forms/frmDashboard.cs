@@ -71,7 +71,39 @@ namespace BUDGET.WinForms.Forms
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex >= 0 && e.ColumnIndex == dgvBudget.ColumnCount - 1)
+            {
+                var expenseIdCell = dgvBudget.Rows[e.RowIndex].Cells["ExpenseId"];
+                if (expenseIdCell.Value != null)
+                {
+                    if (int.TryParse(expenseIdCell.Value.ToString(), out int expenseId))
+                    {
+                        var deletedExpense = db.Expenses.FirstOrDefault(x => x.ExpenseId == expenseId);
 
+                        if (deletedExpense != null)
+                        {
+                            db.Expenses.Remove(deletedExpense);
+                            db.SaveChanges();
+                            UcitajTabelu();
+                        }
+                        else
+                        {
+                            // Handle case where expense with given ID doesn't exist
+                            MessageBox.Show("Expense with ID " + expenseId + " does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        // Handle case where expense ID cannot be parsed as integer
+                        MessageBox.Show("Invalid expense ID: " + expenseIdCell.Value.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    // Handle case where expense ID cell value is null
+                    MessageBox.Show("Expense ID is null.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void frmDashboard_Load(object sender, EventArgs e)
@@ -85,6 +117,7 @@ namespace BUDGET.WinForms.Forms
             var expense = db.Expenses.Where(x => x.UserId == user.UserId).ToList();
 
             var tabela = new DataTable();
+            tabela.Columns.Add("ExpenseId");
             tabela.Columns.Add("Date");
             tabela.Columns.Add("Amount");
             tabela.Columns.Add("Description");
@@ -96,6 +129,7 @@ namespace BUDGET.WinForms.Forms
                 {
                     var Red = tabela.NewRow();
                     var category = db.BudgetCategories.Where(x => x.CategoryId == ex.CategoryId).First();
+                    Red["ExpenseId"] = ex.ExpenseId;
                     Red["Date"] = ex.Date;
                     Red["Amount"] = ex.Amount + " $";
                     Red["Description"] = ex.Description;
@@ -120,11 +154,18 @@ namespace BUDGET.WinForms.Forms
 
         private void btnCategory_Click(object sender, EventArgs e)
         {
-
+            var frm = new frmCategory();
+            frm.ShowDialog();
+            if (frm.DialogResult == DialogResult.OK)
+                UcitajTabelu();
         }
 
         private void btnExpense_Click(object sender, EventArgs e)
         {
+            var frm = new frmExpense();
+            frm.ShowDialog();
+            if (frm.DialogResult == DialogResult.OK)
+                UcitajTabelu();
         }
     }
 }

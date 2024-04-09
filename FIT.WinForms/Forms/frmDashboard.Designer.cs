@@ -30,11 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDashboard));
             dgvBudget = new DataGridView();
-            CategoryName = new DataGridViewTextBoxColumn();
-            Amount = new DataGridViewTextBoxColumn();
-            Description = new DataGridViewTextBoxColumn();
-            Date = new DataGridViewTextBoxColumn();
-            Delete = new DataGridViewButtonColumn();
             label1 = new Label();
             label2 = new Label();
             btnExpense = new Button();
@@ -47,13 +42,19 @@
             barChart3d1 = new MindFusion.Charting.WinForms.BarChart3D();
             label4 = new Label();
             tabPage3 = new TabPage();
-            label5 = new Label();
-            label6 = new Label();
-            txtPassword = new TextBox();
-            label7 = new Label();
-            txtEmail = new TextBox();
-            btnSave = new Button();
             pictureBox1 = new PictureBox();
+            btnSave = new Button();
+            txtEmail = new TextBox();
+            label7 = new Label();
+            txtPassword = new TextBox();
+            label6 = new Label();
+            label5 = new Label();
+            ExpenseId = new DataGridViewTextBoxColumn();
+            CategoryName = new DataGridViewTextBoxColumn();
+            Amount = new DataGridViewTextBoxColumn();
+            Description = new DataGridViewTextBoxColumn();
+            Date = new DataGridViewTextBoxColumn();
+            Delete = new DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)dgvBudget).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -68,7 +69,7 @@
             dgvBudget.AllowUserToDeleteRows = false;
             dgvBudget.BackgroundColor = SystemColors.Highlight;
             dgvBudget.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBudget.Columns.AddRange(new DataGridViewColumn[] { CategoryName, Amount, Description, Date, Delete });
+            dgvBudget.Columns.AddRange(new DataGridViewColumn[] { ExpenseId, CategoryName, Amount, Description, Date, Delete });
             dgvBudget.Location = new Point(6, 68);
             dgvBudget.Name = "dgvBudget";
             dgvBudget.ReadOnly = true;
@@ -77,52 +78,6 @@
             dgvBudget.Size = new Size(852, 374);
             dgvBudget.TabIndex = 0;
             dgvBudget.CellContentClick += dataGridView1_CellContentClick;
-            // 
-            // CategoryName
-            // 
-            CategoryName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            CategoryName.DataPropertyName = "CategoryName";
-            CategoryName.HeaderText = "Category";
-            CategoryName.MinimumWidth = 6;
-            CategoryName.Name = "CategoryName";
-            CategoryName.ReadOnly = true;
-            // 
-            // Amount
-            // 
-            Amount.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Amount.DataPropertyName = "Amount";
-            Amount.HeaderText = "Amount";
-            Amount.MinimumWidth = 6;
-            Amount.Name = "Amount";
-            Amount.ReadOnly = true;
-            // 
-            // Description
-            // 
-            Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Description.DataPropertyName = "Description";
-            Description.HeaderText = "Description";
-            Description.MinimumWidth = 6;
-            Description.Name = "Description";
-            Description.ReadOnly = true;
-            // 
-            // Date
-            // 
-            Date.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            Date.DataPropertyName = "Date";
-            Date.HeaderText = "Date";
-            Date.MinimumWidth = 6;
-            Date.Name = "Date";
-            Date.ReadOnly = true;
-            // 
-            // Delete
-            // 
-            Delete.HeaderText = "";
-            Delete.MinimumWidth = 6;
-            Delete.Name = "Delete";
-            Delete.ReadOnly = true;
-            Delete.Text = "Delete";
-            Delete.UseColumnTextForButtonValue = true;
-            Delete.Width = 125;
             // 
             // label1
             // 
@@ -274,48 +229,15 @@
             tabPage3.Text = "Settings";
             tabPage3.UseVisualStyleBackColor = true;
             // 
-            // label5
+            // pictureBox1
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(6, 65);
-            label5.Name = "label5";
-            label5.Size = new Size(129, 20);
-            label5.TabIndex = 0;
-            label5.Text = "Change password:";
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            label6.ForeColor = Color.FromArgb(56, 124, 188);
-            label6.Location = new Point(6, 14);
-            label6.Name = "label6";
-            label6.Size = new Size(162, 32);
-            label6.TabIndex = 2;
-            label6.Text = "User settings";
-            // 
-            // txtPassword
-            // 
-            txtPassword.Location = new Point(6, 88);
-            txtPassword.Name = "txtPassword";
-            txtPassword.Size = new Size(243, 27);
-            txtPassword.TabIndex = 3;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(6, 118);
-            label7.Name = "label7";
-            label7.Size = new Size(149, 20);
-            label7.TabIndex = 4;
-            label7.Text = "Change email adress:";
-            // 
-            // txtEmail
-            // 
-            txtEmail.Location = new Point(6, 141);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(243, 27);
-            txtEmail.TabIndex = 5;
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(689, 14);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(162, 186);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 7;
+            pictureBox1.TabStop = false;
             // 
             // btnSave
             // 
@@ -331,15 +253,104 @@
             btnSave.Text = "Save changes";
             btnSave.UseVisualStyleBackColor = false;
             // 
-            // pictureBox1
+            // txtEmail
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(689, 14);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(162, 186);
-            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox1.TabIndex = 7;
-            pictureBox1.TabStop = false;
+            txtEmail.Location = new Point(6, 141);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(243, 27);
+            txtEmail.TabIndex = 5;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(6, 118);
+            label7.Name = "label7";
+            label7.Size = new Size(149, 20);
+            label7.TabIndex = 4;
+            label7.Text = "Change email adress:";
+            // 
+            // txtPassword
+            // 
+            txtPassword.Location = new Point(6, 88);
+            txtPassword.Name = "txtPassword";
+            txtPassword.Size = new Size(243, 27);
+            txtPassword.TabIndex = 3;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            label6.ForeColor = Color.FromArgb(56, 124, 188);
+            label6.Location = new Point(6, 14);
+            label6.Name = "label6";
+            label6.Size = new Size(162, 32);
+            label6.TabIndex = 2;
+            label6.Text = "User settings";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(6, 65);
+            label5.Name = "label5";
+            label5.Size = new Size(129, 20);
+            label5.TabIndex = 0;
+            label5.Text = "Change password:";
+            // 
+            // ExpenseId
+            // 
+            ExpenseId.DataPropertyName = "ExpenseId";
+            ExpenseId.HeaderText = "ExpenseId";
+            ExpenseId.MinimumWidth = 6;
+            ExpenseId.Name = "ExpenseId";
+            ExpenseId.ReadOnly = true;
+            ExpenseId.Visible = false;
+            ExpenseId.Width = 125;
+            // 
+            // CategoryName
+            // 
+            CategoryName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            CategoryName.DataPropertyName = "CategoryName";
+            CategoryName.HeaderText = "Category";
+            CategoryName.MinimumWidth = 6;
+            CategoryName.Name = "CategoryName";
+            CategoryName.ReadOnly = true;
+            // 
+            // Amount
+            // 
+            Amount.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Amount.DataPropertyName = "Amount";
+            Amount.HeaderText = "Amount";
+            Amount.MinimumWidth = 6;
+            Amount.Name = "Amount";
+            Amount.ReadOnly = true;
+            // 
+            // Description
+            // 
+            Description.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Description.DataPropertyName = "Description";
+            Description.HeaderText = "Description";
+            Description.MinimumWidth = 6;
+            Description.Name = "Description";
+            Description.ReadOnly = true;
+            // 
+            // Date
+            // 
+            Date.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            Date.DataPropertyName = "Date";
+            Date.HeaderText = "Date";
+            Date.MinimumWidth = 6;
+            Date.Name = "Date";
+            Date.ReadOnly = true;
+            // 
+            // Delete
+            // 
+            Delete.HeaderText = "";
+            Delete.MinimumWidth = 6;
+            Delete.Name = "Delete";
+            Delete.ReadOnly = true;
+            Delete.Text = "Delete";
+            Delete.UseColumnTextForButtonValue = true;
+            Delete.Width = 125;
             // 
             // frmDashboard
             // 
@@ -375,11 +386,6 @@
         private Button btnExpense;
         private Button btnCategory;
         private Label lblWarning;
-        private DataGridViewTextBoxColumn CategoryName;
-        private DataGridViewTextBoxColumn Amount;
-        private DataGridViewTextBoxColumn Description;
-        private DataGridViewTextBoxColumn Date;
-        private DataGridViewButtonColumn Delete;
         private Label label3;
         private TabControl tabControl1;
         private TabPage tabPage1;
@@ -394,5 +400,11 @@
         private Label label6;
         private Label label5;
         private PictureBox pictureBox1;
+        private DataGridViewTextBoxColumn ExpenseId;
+        private DataGridViewTextBoxColumn CategoryName;
+        private DataGridViewTextBoxColumn Amount;
+        private DataGridViewTextBoxColumn Description;
+        private DataGridViewTextBoxColumn Date;
+        private DataGridViewButtonColumn Delete;
     }
 }

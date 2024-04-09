@@ -57,7 +57,7 @@
             pictureBox1.Location = new Point(-17, -16);
             pictureBox1.Margin = new Padding(3, 4, 3, 4);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(330, 612);
+            pictureBox1.Size = new Size(330, 626);
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
@@ -65,11 +65,11 @@
             // 
             label1.AutoSize = true;
             label1.BackColor = SystemColors.HighlightText;
-            label1.Font = new Font("Segoe UI", 14F);
+            label1.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             label1.ForeColor = Color.FromArgb(56, 124, 188);
             label1.Location = new Point(7, 39);
             label1.Name = "label1";
-            label1.Size = new Size(248, 32);
+            label1.Size = new Size(267, 32);
             label1.TabIndex = 1;
             label1.Text = "Login to your account";
             // 
@@ -142,6 +142,7 @@
             label7.Size = new Size(132, 20);
             label7.TabIndex = 13;
             label7.Text = "Niste registrovani?";
+            label7.Click += label7_Click;
             // 
             // button1
             // 

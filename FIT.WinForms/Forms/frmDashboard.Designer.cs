@@ -49,19 +49,21 @@
             label4 = new Label();
             tabPage3 = new TabPage();
             pictureBox1 = new PictureBox();
+            btnDelete = new Button();
             btnSave = new Button();
             txtEmail = new TextBox();
             label7 = new Label();
             txtPassword = new TextBox();
             label6 = new Label();
+            label12 = new Label();
             label5 = new Label();
             label8 = new Label();
             lblTotal = new Label();
             groupBox1 = new GroupBox();
+            label11 = new Label();
+            lblUsers = new Label();
             label10 = new Label();
             lblCategories = new Label();
-            lblUsers = new Label();
-            label11 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvBudget).BeginInit();
             tabControl1.SuspendLayout();
             tabPage1.SuspendLayout();
@@ -279,11 +281,13 @@
             // tabPage3
             // 
             tabPage3.Controls.Add(pictureBox1);
+            tabPage3.Controls.Add(btnDelete);
             tabPage3.Controls.Add(btnSave);
             tabPage3.Controls.Add(txtEmail);
             tabPage3.Controls.Add(label7);
             tabPage3.Controls.Add(txtPassword);
             tabPage3.Controls.Add(label6);
+            tabPage3.Controls.Add(label12);
             tabPage3.Controls.Add(label5);
             tabPage3.Location = new Point(4, 29);
             tabPage3.Name = "tabPage3";
@@ -303,6 +307,21 @@
             pictureBox1.TabIndex = 7;
             pictureBox1.TabStop = false;
             // 
+            // btnDelete
+            // 
+            btnDelete.BackColor = Color.OrangeRed;
+            btnDelete.BackgroundImageLayout = ImageLayout.None;
+            btnDelete.FlatAppearance.BorderSize = 0;
+            btnDelete.FlatStyle = FlatStyle.Flat;
+            btnDelete.ForeColor = SystemColors.ButtonFace;
+            btnDelete.Location = new Point(689, 243);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(143, 39);
+            btnDelete.TabIndex = 6;
+            btnDelete.Text = "Delete category";
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
+            // 
             // btnSave
             // 
             btnSave.BackColor = Color.FromArgb(56, 124, 188);
@@ -316,6 +335,7 @@
             btnSave.TabIndex = 6;
             btnSave.Text = "Save changes";
             btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // txtEmail
             // 
@@ -350,6 +370,15 @@
             label6.Size = new Size(162, 32);
             label6.TabIndex = 2;
             label6.Text = "User settings";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(689, 211);
+            label12.Name = "label12";
+            label12.Size = new Size(124, 20);
+            label12.TabIndex = 0;
+            label12.Text = "Category settings";
             // 
             // label5
             // 
@@ -396,6 +425,26 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Tracker";
             // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Location = new Point(6, 164);
+            label11.Name = "label11";
+            label11.Size = new Size(150, 40);
+            label11.TabIndex = 8;
+            label11.Text = "Number of database \r\nusers:";
+            // 
+            // lblUsers
+            // 
+            lblUsers.AutoSize = true;
+            lblUsers.BackColor = Color.Transparent;
+            lblUsers.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblUsers.ForeColor = Color.Green;
+            lblUsers.Location = new Point(6, 217);
+            lblUsers.Name = "lblUsers";
+            lblUsers.Size = new Size(0, 20);
+            lblUsers.TabIndex = 9;
+            // 
             // label10
             // 
             label10.AutoSize = true;
@@ -415,26 +464,6 @@
             lblCategories.Name = "lblCategories";
             lblCategories.Size = new Size(0, 20);
             lblCategories.TabIndex = 9;
-            // 
-            // lblUsers
-            // 
-            lblUsers.AutoSize = true;
-            lblUsers.BackColor = Color.Transparent;
-            lblUsers.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lblUsers.ForeColor = Color.Green;
-            lblUsers.Location = new Point(6, 217);
-            lblUsers.Name = "lblUsers";
-            lblUsers.Size = new Size(0, 20);
-            lblUsers.TabIndex = 9;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Location = new Point(6, 164);
-            label11.Name = "label11";
-            label11.Size = new Size(150, 40);
-            label11.TabIndex = 8;
-            label11.Text = "Number of database \r\nusers:";
             // 
             // frmDashboard
             // 
@@ -500,5 +529,7 @@
         private Label lblCategories;
         private Label label11;
         private Label lblUsers;
+        private Button btnDelete;
+        private Label label12;
     }
 }

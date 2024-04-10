@@ -33,7 +33,7 @@ namespace BUDGET.WinForms.Forms
 
         private void LoadLabels()
         {
-            lblTotal.Text = db.Expenses.Sum(x => x.Amount).ToString();
+            lblTotal.Text = db.Expenses.Where(x => x.UserId == userId).Sum(x => x.Amount).ToString();
             lblCategories.Text = db.BudgetCategories.Count().ToString();
             lblUsers.Text = db.Users.Count().ToString();
         }
@@ -62,7 +62,9 @@ namespace BUDGET.WinForms.Forms
                     if (category != null)
                     {
                         double totalAmount = Convert.ToDouble(expense.TotalAmount);
-                        chart.Series.Add(new MindFusion.Charting.Series3D(new double[] { totalAmount }, new double[] { 0 }, new double[] { 0 }, new string[] { category.CategoryName }));
+                        chart.Series.Add(new MindFusion.Charting.Series3D(new double[] { totalAmount },
+                            new double[] { 0 }, new double[] { 0 },
+                            new string[] { category.CategoryName }));
                     }
                 }
 
@@ -71,7 +73,6 @@ namespace BUDGET.WinForms.Forms
                 chart.ShowLegend = true;
                 chart.LegendTitle = "Categories";
 
-                // Add the chart to the barChart3d1 control
                 barChart3d1.Controls.Clear();
                 barChart3d1.Controls.Add(chart);
             }
@@ -86,31 +87,33 @@ namespace BUDGET.WinForms.Forms
                 {
                     if (int.TryParse(expenseIdCell.Value.ToString(), out int expenseId))
                     {
-                        var deletedExpense = db.Expenses.FirstOrDefault(x => x.ExpenseId == expenseId);
+                        var result = MessageBox.Show("Are you sure you want to delete this expense?", "Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                        if (deletedExpense != null)
+                        if (result == DialogResult.Yes)
                         {
-                            db.Expenses.Remove(deletedExpense);
-                            db.SaveChanges();
-                            UcitajTabelu();
-                            LoadChart();
-                            LoadLabels();
-                        }
-                        else
-                        {
-                            // Handle case where expense with given ID doesn't exist
-                            MessageBox.Show("Expense with ID " + expenseId + " does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            var deletedExpense = db.Expenses.FirstOrDefault(x => x.ExpenseId == expenseId);
+
+                            if (deletedExpense != null)
+                            {
+                                db.Expenses.Remove(deletedExpense);
+                                db.SaveChanges();
+                                UcitajTabelu();
+                                LoadChart();
+                                LoadLabels();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Expense with ID " + expenseId + " does not exist.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
                     else
                     {
-                        // Handle case where expense ID cannot be parsed as integer
                         MessageBox.Show("Invalid expense ID: " + expenseIdCell.Value.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
                 {
-                    // Handle case where expense ID cell value is null
                     MessageBox.Show("Expense ID is null.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -168,7 +171,7 @@ namespace BUDGET.WinForms.Forms
         {
             var frm = new frmCategory();
             frm.ShowDialog();
-            if (frm.DialogResult == DialogResult.OK) 
+            if (frm.DialogResult == DialogResult.OK)
             {
                 LoadChart();
                 LoadLabels();
@@ -180,11 +183,72 @@ namespace BUDGET.WinForms.Forms
         {
             var frm = new frmExpense(userId);
             frm.ShowDialog();
-            if (frm.DialogResult == DialogResult.OK) 
+            if (frm.DialogResult == DialogResult.OK)
             {
                 UcitajTabelu();
                 LoadChart();
                 LoadLabels();
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var frm = new frmDelete();
+            frm.ShowDialog();
+            if (frm.DialogResult == DialogResult.OK)
+            {
+                UcitajTabelu();
+                LoadChart();
+                LoadLabels();
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            var email = txtEmail.Text;
+            var pass = txtPassword.Text;
+
+            // Check if either email or password is provided
+            if (!string.IsNullOrEmpty(email) || !string.IsNullOrEmpty(pass))
+            {
+                // Find the user by userId
+                var user = db.Users.FirstOrDefault(x => x.UserId == userId);
+
+                // Update the user's email if provided
+                if (!string.IsNullOrEmpty(email))
+                {
+                    user.Email = email;
+                }
+
+                // Update the user's password if provided
+                if (!string.IsNullOrEmpty(pass))
+                {
+                    user.Password = pass;
+                }
+
+                try
+                {
+                    // Save changes to the database
+                    db.SaveChanges();
+
+                    // Show a success message
+                    MessageBox.Show("User information updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Reload the table, chart, and labels
+                    UcitajTabelu();
+                    LoadChart();
+                    LoadLabels();
+                }
+                catch (Exception ex)
+                {
+                    // Show an error message if something goes wrong
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                // Show a warning message if both email and password are empty
+                MessageBox.Show("Please enter either email or password!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

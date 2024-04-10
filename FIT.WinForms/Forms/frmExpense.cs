@@ -34,6 +34,7 @@ namespace BUDGET.WinForms.Forms
         {
             if (jeValidno())
             {
+                BudgetCategory selectedCategory = cmbCategories.SelectedItem as BudgetCategory;
                 int budgetAmount;
 
                 if (int.TryParse(txtAmount.Text, out budgetAmount))
@@ -44,7 +45,7 @@ namespace BUDGET.WinForms.Forms
                         Amount = budgetAmount,
                         Description = txtDesc.Text,
                         Date = dtpDate.Text,
-                        CategoryId = cmbCategories.SelectedIndex,
+                        CategoryId = selectedCategory.CategoryId,
                     };
 
                     db.Expenses.Add(noviExpense);

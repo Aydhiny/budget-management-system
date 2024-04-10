@@ -22,6 +22,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BUDGET.Data\BUDGET.Data.csproj" />
+    <ProjectReference Include="..\BUDGET.Infrastructure\BUDGET.Infrastructure.csproj" />
     <ProjectReference Include="..\FIT.Data\BUDGET.Data.csproj" />
     <ProjectReference Include="..\FIT.Infrastructure\BUDGET.Infrastructure.csproj" />
   </ItemGroup>

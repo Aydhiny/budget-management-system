@@ -157,6 +157,7 @@
             btnForgot.TabIndex = 12;
             btnForgot.Text = "Forgot password ?";
             btnForgot.UseVisualStyleBackColor = false;
+            btnForgot.Click += btnForgot_Click;
             // 
             // btnLogin
             // 

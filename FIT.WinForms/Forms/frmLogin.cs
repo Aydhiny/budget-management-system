@@ -60,5 +60,10 @@ namespace BUDGET.WinForms.Forms
             var frm = new frmRegister();
             frm.ShowDialog();
         }
+
+        private void btnForgot_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This functionality will be added in future updates!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

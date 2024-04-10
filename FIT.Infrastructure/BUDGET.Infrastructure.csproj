@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BUDGET.Data\BUDGET.Data.csproj" />
     <ProjectReference Include="..\FIT.Data\BUDGET.Data.csproj" />
   </ItemGroup>
 
